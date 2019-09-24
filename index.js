@@ -1,29 +1,30 @@
 const express = require('express');
 const app = express();
+var cors = require('cors');
 const mongoose = require('mongoose');
 
 require('./person.model');
 
 const Person = mongoose.model('persons');
 const person = new Person ({
-    name: 'Alex',
-    age: 48
+    name: 'Valia',
+    age: 42
 });
 
 // person.save()
 //     .then(user => console.log(user))
 //     .catch(error => console.log(error) )
 
-mongoose.connect('mongodb://localhost/alex-mongodb', {useNewUrlParser: true, useUnifiedTopology: true})
+app.use(cors());
+
+mongoose.connect('mongodb+srv://alex:XY31TQGX9CA4FRtt@cluster0-mzhck.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('mongodb has started'))
     .catch(() => console.log('connection error'));
 
 app.get('/add', function (req, res) {
     person.save()
-     .then(user => console.log(user))
+     .then(user => res.json(user))
      .catch(error => console.log(error));
-
-    res.send('Person added');
 });
 
 app.listen(3000, function () {
