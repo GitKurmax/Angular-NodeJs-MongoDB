@@ -32,26 +32,23 @@ export class ListComponent implements OnInit {
       });
     }
 
-    removeUser(elem) {
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
+    
+  openDialog(action, elem): void {
+    const dialogRef = this.dialog.open(AllDialogsComponent, 
+      {
+        data: {
+          action: action,
+          user: elem,
+          users: this.users
+          }
       });
 
-      this.http.post<any>('http://localhost:3000/removeUser', elem, {headers: headers})
-        .subscribe(data => {
-          const newUsers = this.users.filter(user => {
-            return user.id !== elem.id
-        });
-        this.users = newUsers;
-    });
-  }
-
-  openDialog(action): void {
-    const dialogRef = this.dialog.open(AllDialogsComponent, {data: {action}});
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      const newUsers = this.users.filter(user => {
+        return user.id !== elem.id
     });
+    this.users = newUsers;
+});
   }
 }
 

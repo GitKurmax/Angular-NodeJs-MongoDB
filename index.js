@@ -39,10 +39,11 @@ app.get('/add', function (req, res) {
 });
 
 app.post('/removeUser', function (req, res) {
-    Person.findOneAndRemove(req.body.id, (err, todo) => {
-       if (err) return res.status(500).send(err);
-       return res.status(200).send("Todo successfully deleted");
-    });
+    console.log(req.body)
+        Person.findOneAndRemove(req.body.id, (err, todo) => {
+        if (err) return res.status(500).send(err);
+        return res.status(200).send("Todo successfully deleted");
+        });
 });
 
 
