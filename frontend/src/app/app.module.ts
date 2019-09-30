@@ -9,8 +9,9 @@ import { ListComponent } from './list/list.component';
 import { PutComponent } from './put/put.component';
 import { ContentComponent } from './content/content.component';
 import { AllDialogsComponent } from './all-dialogs/all-dialogs.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
@@ -33,7 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule 
+    MatDialogModule,
+    MatButtonModule
   ],
   entryComponents: [
     AllDialogsComponent

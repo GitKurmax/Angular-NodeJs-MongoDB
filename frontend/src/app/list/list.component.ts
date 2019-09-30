@@ -46,10 +46,8 @@ export class ListComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AllDialogsComponent, {
-      width: '250px',
-    });
+  openDialog(action): void {
+    const dialogRef = this.dialog.open(AllDialogsComponent, {data: {action}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

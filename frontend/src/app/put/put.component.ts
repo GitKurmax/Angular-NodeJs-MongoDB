@@ -7,9 +7,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./put.component.scss']
 })
 export class PutComponent implements OnInit {
-  person = 'noname';
-  title = 'frontend';
-
   constructor(
     private http: HttpClient
   ) { }
@@ -19,6 +16,6 @@ export class PutComponent implements OnInit {
 
   addPerson() {
     this.http.get<any>('http://localhost:3000/add')
-      .subscribe(data => this.person = data.name);
+      .subscribe(data => data);
   }
 }

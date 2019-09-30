@@ -1,7 +1,23 @@
-<div mat-dialog-content>
-    <h3>Are you shure?</h3>
+<div *ngIf= "data.action === 'delete'" mat-dialog-content class="delete">
+    <h3 mat-dialog-title>Are you shure?</h3>
     <div mat-dialog-actions>
-        <button>Yes</button>
-        <button>No</button>
+        <button mat-button (click)="deleteUser()">Yes</button>
+        <button mat-button (click)="cancel()">No</button>
     </div>
 </div>
+
+<div *ngIf= "data.action === 'edit'" mat-dialog-content class="edit">
+    <h3 mat-dialog-title>Edit user data</h3>
+    <mat-form-field>
+        <input matInput placeholder="Name"/>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <input matInput placeholder="Age"/>
+      </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-button (click)="deleteUser()">Save</button>
+        <button mat-button (click)="cancel()">Cancel</button>
+    </div>
+</div>
+
