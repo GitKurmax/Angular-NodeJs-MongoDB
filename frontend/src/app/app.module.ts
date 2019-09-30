@@ -8,9 +8,13 @@ import { HeaderComponent } from './header/header.component';
 import { ListComponent } from './list/list.component';
 import { PutComponent } from './put/put.component';
 import { ContentComponent } from './content/content.component';
+import { AllDialogsComponent } from './all-dialogs/all-dialogs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatTableModule } from '@angular/material'  
+import { MatTableModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -18,14 +22,21 @@ import { MatTableModule } from '@angular/material'
     HeaderComponent,
     ListComponent,
     PutComponent,
-    ContentComponent
+    ContentComponent,
+    AllDialogsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule 
+  ],
+  entryComponents: [
+    AllDialogsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

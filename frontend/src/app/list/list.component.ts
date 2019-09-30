@@ -1,5 +1,7 @@
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AllDialogsComponent } from '../all-dialogs/all-dialogs.component';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +14,8 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'age', 'edit'];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -40,6 +43,16 @@ export class ListComponent implements OnInit {
             return user.id !== elem.id
         });
         this.users = newUsers;
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AllDialogsComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 }
