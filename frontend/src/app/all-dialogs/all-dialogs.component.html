@@ -9,12 +9,12 @@
 <div *ngIf= "data.action === 'edit'" mat-dialog-content class="edit">
     <h3 mat-dialog-title>Edit user data</h3>
     <mat-form-field>
-        <input matInput placeholder="Name"/>
-      </mat-form-field>
+      <input matInput placeholder="Name"/>
+    </mat-form-field>
     
-      <mat-form-field>
-        <input matInput placeholder="Age"/>
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Age"/>
+    </mat-form-field>
     <div mat-dialog-actions>
         <button mat-button (click)="deleteUser()">Save</button>
         <button mat-button (click)="cancel()">Cancel</button>

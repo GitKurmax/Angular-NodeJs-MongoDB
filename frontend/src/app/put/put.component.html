@@ -1,10 +1,12 @@
 <div class="form-container">
     <h2>Add user</h2>
     <mat-form-field>
-      <input matInput placeholder="Name"/>
+      <input matInput placeholder="Name" [(ngModel)]="name"/>
     </mat-form-field>
   
     <mat-form-field>
-      <input matInput placeholder="Age"/>
+      <input matInput placeholder="Age" [(ngModel)]="age"/>
     </mat-form-field>
+
+    <button mat-raised-button (click)="addPerson()">Add</button>
   </div>

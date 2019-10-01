@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { HttpService } from '../services/http.service';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-all-dialogs',
@@ -11,16 +11,14 @@ export class AllDialogsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AllDialogsComponent>,
-    private httpService: HttpService,
+    private commonService: CommonService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
   
   deleteUser() {
-    this.httpService.httpDelete('delete', this.data.user.id)
-    .subscribe(data => console.log(data));
-    this.dialogRef.close();
+    this.commonService.delete('/removeUser', this.data.user.id).subscribe(data => console.log(data));
   }
 
   cancel() {
