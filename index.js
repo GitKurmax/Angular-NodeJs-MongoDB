@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb+srv://alex:XY31TQGX9CA4FRtt@cluster0-mzhck.mongodb.net/test?retryWrites=true&w=majority',
- {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, createIndexes: true})
+ {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true})
     .then(() => console.log('mongodb has started'))
     .catch((err) => console.log('connection error' + err));
 
@@ -48,11 +48,12 @@ return res.status(200).send({'message':'User successfully deleted'});
 });
 
 app.put('/api/editUser', function (req, res) {
-    console.log(req.body);
-    // Person.findOneAndRemove(req.body.id, (err, todo) => {
-    // if (err) return res.status(500).send(err);
-    // return res.status(200).send("Todo successfully deleted");
-    // });
+    Person.findOneAndUpdate({_id: req.body.id},
+         {name: req.body.name, age: req.body.age},
+         (err, todo) => {
+    if (err) return res.status(500).send(err);
+    return res.status(200).send({'message':'User successfully updated'});
+    });
 });
 
 

@@ -22,23 +22,27 @@ export class AllDialogsComponent implements OnInit {
   }
   
   deleteUser() {
+    this.commonService.cancelAction();
     this.commonService.delete('/removeUser', this.data.user.id);      
     this.dialogRef.close({type: 'delete', id: this.data.user.id});
   }
 
   editUser() {
-    console.log({name:this.name, age: this.age});
-    this.commonService.edit('/editUser', 
-      {
+    this.commonService.cancelAction();
+    this.commonService.edit('/editUser', {
         name:this.name, 
         age: this.age,
         id: this.data.user.id
-    }).subscribe(data => console.log(data));
-    this.dialogRef.close('edit');
+    });
+    this.dialogRef.close({
+      type: 'edit',
+      id: this.data.user.id,
+      name: this.name,
+      age: this.age
+     });
   }
 
   cancel(action) {
     this.dialogRef.close(action);
   }
-  
 }

@@ -29,13 +29,16 @@ export class CommonService {
       });
   }
 
-  edit(type, data): Observable<any> {
+  edit(type, data) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
       })
     };
-    return this.http.put(environment.apiUrl + type, data, httpOptions);
+    this.http.put(environment.apiUrl + type, data, httpOptions)
+      .subscribe(data => {
+        this._action.next('edit');
+      });
   }
 
   add(type, data): Observable<any> {
@@ -59,8 +62,7 @@ export class CommonService {
       });;
   }
 
-  done(action): Observable<any> {
-    return from(action);
+  cancelAction() {
+    this._action.next('');
   }
-
 }

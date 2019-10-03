@@ -48,10 +48,20 @@ export class ListComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result =>{
-      console.log('result: ' + result);
       this.commonService.action.subscribe(data => {
         if (data === 'delete') {
           const newUsers = this.users.filter(user => user.id !== result.id);
+          this.users = newUsers;
+        }
+        if (data === 'edit') {
+          const newUsers = this.users.map(user => {
+            if (user.id === result.id) {
+              user.name = result.name;
+              user.age = result.age;
+              return user;
+            } 
+            return user;
+          });
           this.users = newUsers;
         }
       });

@@ -10,8 +10,8 @@ const PersonSchema = new Schema ({
 
     age: {
         type: Number,
-        min: 18,
-        max: 60,
+        min: 5,
+        max: 80,
         default: 20,
         unique: false
     } 

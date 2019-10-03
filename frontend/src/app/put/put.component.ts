@@ -8,8 +8,8 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./put.component.scss']
 })
 export class PutComponent implements OnInit {
-  name = '';
-  age = '';
+  public name = '';
+  public age = '';
   
   constructor(
     private http: HttpClient,
@@ -20,8 +20,11 @@ export class PutComponent implements OnInit {
   }
 
   addPerson() {
-    this.commonService.add('/add', {name: this.name, age: this.age}).subscribe(data => {
-      this.commonService.getAll('/getAll');
+    this.commonService.add('/add', {name: this.name, age: this.age})
+      .subscribe(data => {
+        this.name = '';
+        this.age = '';
+        this.commonService.getAll('/getAll');
     });
   }
 }
