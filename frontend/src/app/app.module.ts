@@ -28,7 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AllDialogsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { DataService } from './data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, filter, catchError, skip } from 'rxjs/operators';
