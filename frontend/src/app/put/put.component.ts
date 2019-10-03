@@ -20,6 +20,8 @@ export class PutComponent implements OnInit {
   }
 
   addPerson() {
-    this.commonService.add('/add', {name: this.name, age: this.age}).subscribe(data => console.log(data));
+    this.commonService.add('/add', {name: this.name, age: this.age}).subscribe(data => {
+      this.commonService.getAll('/getAll');
+    });
   }
 }

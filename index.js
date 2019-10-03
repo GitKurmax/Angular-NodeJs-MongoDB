@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-// app.use(bodyParser());
 
 mongoose.connect('mongodb+srv://alex:XY31TQGX9CA4FRtt@cluster0-mzhck.mongodb.net/test?retryWrites=true&w=majority',
  {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, createIndexes: true})
@@ -41,10 +40,10 @@ app.post('/api/add', function (req, res) {
 });
 
 app.post('/api/removeUser', function (req, res) {
-    console.log(req.body);
-    Person.findOneAndRemove(req.body.id, (err, todo) => {
+    Person.findOneAndRemove({_id: req.body.id}, (err, todo) => {
+    console.log(todo);
     if (err) return res.status(500).send(err);
-    return res.status(200).send("Todo successfully deleted");
+return res.status(200).send({'message':'User successfully deleted'});
     });
 });
 

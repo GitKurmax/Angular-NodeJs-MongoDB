@@ -21,19 +21,22 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.commonService.getAll('/getAll')
-      .subscribe(users => this.users = users.map((user, index) => {
-        return {
-          number: ++index,
-          name: user.name,
-          age: user.age,
-          id: user._id
-        }
-      } 
-      ));
+    this.commonService.users.subscribe(data => {
+      if (data) {
+        this.users = data.map((user, index) => {
+          return {
+            number: ++index,
+            name: user.name,
+            age: user.age,
+            id: user._id
+          }
+        });
+      }
+    })
+
+    this.commonService.getAll('/getAll');
     }
 
-    
   openDialog(action, elem): void {
     const dialogRef = this.dialog.open(AllDialogsComponent, 
       {
@@ -44,13 +47,15 @@ export class ListComponent implements OnInit {
           }
       });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      // const newUsers = this.users.filter(user => {
-      //   return user.id !== elem.id
-      // });
-      //   this.users = newUsers;
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log('result: ' + result);
+      this.commonService.action.subscribe(data => {
+        if (data === 'delete') {
+          const newUsers = this.users.filter(user => user.id !== result.id);
+          this.users = newUsers;
+        }
       });
-    }
+    });
   }
+}
 
