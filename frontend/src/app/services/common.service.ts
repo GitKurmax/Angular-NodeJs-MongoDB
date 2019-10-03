@@ -19,12 +19,14 @@ export class CommonService {
     return this.http.get(environment.apiUrl + type);
   }
 
-  // edit(obj): Observable<any> {
-  //   return this.dataService.api(obj).pipe(
-  //     tap(resp => {
-  //       return resp;
-  //     }));
-  // }
+  edit(type, data): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    return this.http.put(environment.apiUrl + type, data, httpOptions);
+  }
 
   add(type, data): Observable<any> {
     const httpOptions = {
@@ -36,13 +38,12 @@ export class CommonService {
   }
 
   delete(type, id): Observable<any> {
-    console.log(typeof id);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
       })
     };
-    return this.http.post(environment.apiUrl + type, id, httpOptions);
+    return this.http.post(environment.apiUrl + type, {id: id}, httpOptions);
   }
 
 }

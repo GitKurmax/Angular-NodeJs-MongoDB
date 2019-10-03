@@ -45,10 +45,11 @@ export class ListComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      const newUsers = this.users.filter(user => {
-        return user.id !== elem.id
-      });
-        this.users = newUsers;
+      console.log(result);
+      // const newUsers = this.users.filter(user => {
+      //   return user.id !== elem.id
+      // });
+      //   this.users = newUsers;
       });
     }
   }

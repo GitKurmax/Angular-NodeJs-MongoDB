@@ -2,22 +2,22 @@
     <h3 mat-dialog-title>Are you shure?</h3>
     <div mat-dialog-actions>
         <button mat-button (click)="deleteUser()">Yes</button>
-        <button mat-button (click)="cancel()">No</button>
+        <button mat-button (click)="cancel('delete')">No</button>
     </div>
 </div>
 
 <div *ngIf= "data.action === 'edit'" mat-dialog-content class="edit">
     <h3 mat-dialog-title>Edit user data</h3>
     <mat-form-field>
-      <input matInput placeholder="Name"/>
+      <input matInput placeholder="Name" [(ngModel)]="name"/>
     </mat-form-field>
     
     <mat-form-field>
-      <input matInput placeholder="Age"/>
+      <input matInput placeholder="Age" [(ngModel)]="age"/>
     </mat-form-field>
     <div mat-dialog-actions>
-        <button mat-button (click)="deleteUser()">Save</button>
-        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-button (click)="editUser()">Save</button>
+        <button mat-button (click)="cancel('edit')">Cancel</button>
     </div>
 </div>
 

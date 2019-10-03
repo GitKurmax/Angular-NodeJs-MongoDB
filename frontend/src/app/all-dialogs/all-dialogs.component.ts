@@ -8,6 +8,8 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./all-dialogs.component.scss']
 })
 export class AllDialogsComponent implements OnInit {
+  public name = '';
+  public age = '';
 
   constructor(
     public dialogRef: MatDialogRef<AllDialogsComponent>,
@@ -15,14 +17,28 @@ export class AllDialogsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    this.name = this.data.user.name;
+    this.age = this.data.user.age;
   }
   
   deleteUser() {
     this.commonService.delete('/removeUser', this.data.user.id).subscribe(data => console.log(data));
+    this.dialogRef.close('delete');
   }
 
-  cancel() {
-    this.dialogRef.close();
+  editUser() {
+    console.log({name:this.name, age: this.age});
+    this.commonService.edit('/editUser', 
+      {
+        name:this.name, 
+        age: this.age,
+        id: this.data.user.id
+    }).subscribe(data => console.log(data));
+    this.dialogRef.close('edit');
+  }
+
+  cancel(action) {
+    this.dialogRef.close(action);
   }
   
 }
