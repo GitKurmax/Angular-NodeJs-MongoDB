@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap, filter, catchError, skip } from 'rxjs/operators';
+import { tap, filter, catchError, skip, map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { from } from 'rxjs';
 
@@ -24,8 +24,12 @@ export class CommonService {
 
   getAll(type){
     this.http.get(environment.apiUrl + type)
-      .subscribe(data => {
-        this._users.next(data);
+      .subscribe(response => {
+        const endData = [];
+        for (let key in response) {
+          endData.push(response[key]);
+        }
+        this._users.next(endData);
       });
   }
 
