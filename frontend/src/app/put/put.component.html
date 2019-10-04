@@ -1,12 +1,17 @@
+<style>
+  button {
+    background: linear-gradient(to top,rgba(105,220,235,1) 20%, #fff 130%);
+  }
+</style>
 <div class="form-container">
-    <h2>Add user</h2>
+    <h3>Add user</h3>
     <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="name"/>
+      <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="set()"/>
     </mat-form-field>
   
     <mat-form-field>
-      <input matInput placeholder="Age" [(ngModel)]="age"/>
+      <input matInput placeholder="Age" [(ngModel)]="age" (keyup)="set()"/>
     </mat-form-field>
 
-    <button mat-raised-button (click)="addPerson()">Add</button>
+    <button [class.disabled] = "dis" [disabled] = "dis" mat-raised-button (click)="addPerson()">Add</button>
   </div>

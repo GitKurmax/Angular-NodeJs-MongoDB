@@ -1,5 +1,4 @@
 import { Component, OnInit, ɵConsole } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AllDialogsComponent } from '../all-dialogs/all-dialogs.component';
 import { CommonService } from '../services/common.service';
@@ -15,7 +14,6 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'age', 'edit'];
 
   constructor(
-    private http: HttpClient,
     public dialog: MatDialog,
     private commonService: CommonService
   ) { }

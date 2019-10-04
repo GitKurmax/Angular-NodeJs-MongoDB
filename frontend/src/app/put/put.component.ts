@@ -8,11 +8,11 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./put.component.scss']
 })
 export class PutComponent implements OnInit {
-  public name = '';
-  public age = '';
+  public name: string = '';
+  public age: string = '';
+  public dis = true;
   
   constructor(
-    private http: HttpClient,
     private commonService: CommonService
   ) { }
 
@@ -25,7 +25,12 @@ export class PutComponent implements OnInit {
       .subscribe(data => {
         this.name = '';
         this.age = '';
+        this.set();
         this.commonService.getAll('/getAll');
     });
+  }
+
+  set() {
+    this.dis = this.name.length === 0 || this.age.length === 0;
   }
 }
