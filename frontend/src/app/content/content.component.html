@@ -5,4 +5,11 @@
     <div class="content-container-create">
         <app-put></app-put>
     </div>
+    <div class="spinner-wrapper" [class.invisible] = "visibleSpinner">
+        <mat-progress-spinner
+            [color]="color"
+            [mode]="mode"
+            [value]="value">
+        </mat-progress-spinner>
+      </div>
 </div>

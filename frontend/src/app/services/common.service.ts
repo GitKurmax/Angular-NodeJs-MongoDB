@@ -17,12 +17,16 @@ export class CommonService {
   private _action = new BehaviorSubject('');
   public action = this._action.asObservable();
 
+  private _showSpinner = new BehaviorSubject(false);
+  public showSpinner= this._showSpinner.asObservable();
+
 
   constructor(
     private http: HttpClient
   ) { }
 
   getAll(type){
+    this._showSpinner.next(true);
     this.http.get(environment.apiUrl + type)
       .subscribe(response => {
         const endData = [];
@@ -30,6 +34,7 @@ export class CommonService {
           endData.push(response[key]);
         }
         this._users.next(endData);
+        this._showSpinner.next(false);
       });
   }
 
@@ -68,5 +73,13 @@ export class CommonService {
 
   cancelAction() {
     this._action.next('');
+  }
+
+  displaySpinner() {
+    this._showSpinner.next(true);
+  }
+
+  hideSpinner() {
+    this._showSpinner.next(false);
   }
 }

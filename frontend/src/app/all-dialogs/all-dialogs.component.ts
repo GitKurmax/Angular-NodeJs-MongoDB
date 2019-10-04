@@ -23,12 +23,14 @@ export class AllDialogsComponent implements OnInit {
   
   deleteUser() {
     this.commonService.cancelAction();
+    this.commonService.displaySpinner();
     this.commonService.delete('/removeUser', this.data.user.id);      
     this.dialogRef.close({type: 'delete', id: this.data.user.id});
   }
 
   editUser() {
     this.commonService.cancelAction();
+    this.commonService.displaySpinner();
     this.commonService.edit('/editUser', {
         name:this.name, 
         age: this.age,

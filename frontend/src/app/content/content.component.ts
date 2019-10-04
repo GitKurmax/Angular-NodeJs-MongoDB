@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-content',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+  visibleSpinner: Boolean;
 
-  constructor() { }
+  constructor(
+    private commonService: CommonService
+  ) { }
 
   ngOnInit() {
+    this.commonService.showSpinner.subscribe(data => this.visibleSpinner = data);
   }
 
 }

@@ -52,6 +52,7 @@ export class ListComponent implements OnInit {
         if (data === 'delete') {
           const newUsers = this.users.filter(user => user.id !== result.id);
           this.users = newUsers;
+          this.commonService.hideSpinner();
         }
         if (data === 'edit') {
           const newUsers = this.users.map(user => {
@@ -63,6 +64,7 @@ export class ListComponent implements OnInit {
             return user;
           });
           this.users = newUsers;
+          this.commonService.hideSpinner();
         }
       });
     });

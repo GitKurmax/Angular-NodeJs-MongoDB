@@ -20,6 +20,7 @@ export class PutComponent implements OnInit {
   }
 
   addPerson() {
+    this.commonService.displaySpinner();
     this.commonService.add('/add', {name: this.name, age: this.age})
       .subscribe(data => {
         this.name = '';

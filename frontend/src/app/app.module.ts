@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     FormsModule
   ],
   entryComponents: [

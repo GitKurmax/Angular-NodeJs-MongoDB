@@ -1,4 +1,5 @@
 .content-container {
+    position: relative;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -15,4 +16,20 @@
 .content-container-create {
     flex-grow: 1;
     padding: 30px;
+}
+
+.spinner-wrapper {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: rgba(211, 211, 211, 0.5);;
+    width: 100%;
+    height: calc(100% - 100px);
+    top: 100px;
+    left: 0;
+}
+
+.spinner-wrapper.invisible {
+    display: flex;
 }
