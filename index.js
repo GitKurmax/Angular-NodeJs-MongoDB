@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-console.log(mongoURI.mongoURI);
 mongoose.connect(mongoURI.mongoURI,
  {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true})
     .then(() => console.log('mongodb has started'))
@@ -36,14 +35,12 @@ app.post('/api/add', function (req, res) {
 
     person.save()
      .then(user => {
-        console.log(user)
         res.json(user)})
      .catch(error => console.log(error));
 });
 
 app.post('/api/removeUser', function (req, res) {
     Person.findOneAndRemove({_id: req.body.id}, (err, todo) => {
-    console.log(todo);
     if (err) return res.status(500).send(err);
 return res.status(200).send({'message':'User successfully deleted'});
     });
