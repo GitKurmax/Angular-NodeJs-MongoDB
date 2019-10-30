@@ -35,7 +35,8 @@ export class CommonService {
         }
         this._users.next(endData);
         this._showSpinner.next(false);
-      });
+      },
+      error => this._showSpinner.next(false));
   }
 
   edit(type, data) {

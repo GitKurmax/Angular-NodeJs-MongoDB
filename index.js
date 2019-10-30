@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
+const path = require('path');
+const mongoURI = require('./config/keys');
 
 require('./person.model');
 
@@ -13,8 +15,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
-mongoose.connect('mongodb+srv://alex:XY31TQGX9CA4FRtt@cluster0-mzhck.mongodb.net/test?retryWrites=true&w=majority',
+console.log(mongoURI.mongoURI);
+mongoose.connect(mongoURI.mongoURI,
  {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true})
     .then(() => console.log('mongodb has started'))
     .catch((err) => console.log('connection error' + err));
@@ -56,6 +58,17 @@ app.put('/api/editUser', function (req, res) {
     });
 });
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/dist/browser'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(
+            path.resolve(
+                __dirname, 'frontend', 'dist', 'browser', 'index.html'
+            )
+        )
+    })
+}
 
 app.listen(3000, function () {
   console.log('Server listening on port 3000!');

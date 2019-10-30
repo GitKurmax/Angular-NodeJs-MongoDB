@@ -8,10 +8,6 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  httpToApi(type, data) {
-
-  }
-
   httpDelete(type, body) {
     console.log(body)
     const headers = new HttpHeaders({

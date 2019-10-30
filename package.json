@@ -1,11 +1,18 @@
 {
   "name": "mongodb",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fullstack app with angular and express",
   "main": "index.js",
+  "engines": {
+    "node": "12.6.0",
+    "npm": "6.9.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix frontend",
+    "client-install": "npm install --prefix frontend",
+    "heroku-postbuild": "NPM_COFIG_PRODUCTION=false npm run client-install && npm run build --prefix frontend"
   },
   "author": "",
   "license": "ISC",
