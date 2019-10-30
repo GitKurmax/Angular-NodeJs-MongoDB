@@ -55,6 +55,8 @@ app.put('/api/editUser', function (req, res) {
     });
 });
 
+console.log('process.env.NODE_ENV - ' + process.env.NODE_ENV);
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/dist/browser'));
 
